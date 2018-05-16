@@ -1,0 +1,44 @@
+[
+  {
+    "data": {
+      "humidity": {
+        "unit": "%", 
+        "value": 70.7
+      }, 
+      "temperature": {
+        "unit": "C", 
+        "value": 20.2
+      }
+    }, 
+    "id": 1, 
+    "timestamp": "Tue May 15 16:44:41 2018"
+  }, 
+  {
+    "data": {
+      "humidity": {
+        "unit": "%", 
+        "value": 71.71
+      }, 
+      "temperature": {
+        "unit": "C", 
+        "value": 21.21
+      }
+    }, 
+    "id": 2, 
+    "timestamp": "Tue May 15 16:44:41 2018"
+  }, 
+  {
+    "data": {
+      "humidity": {
+        "unit": "%", 
+        "value": 72.72
+      }, 
+      "temperature": {
+        "unit": "C", 
+        "value": 22.22
+      }
+    }, 
+    "id": 3, 
+    "timestamp": "Tue May 15 16:44:41 2018"
+  }
+]
