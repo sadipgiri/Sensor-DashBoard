@@ -17,8 +17,8 @@ def index():
     # list_of_sensors = ["1", "2"]
     return render_template('sensor.html', data=data, list_of_sensors=list_of_sensors)
 
-@app.route('/id')
-def 
+# @app.route('/id')
+# def 
 
 if __name__ == '__main__':
     app.run(debug=True)
