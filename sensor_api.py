@@ -22,13 +22,15 @@ def offline_sensor_data():
         sensor_readings = json_data
         return sensor_readings
 
-def dict_of_sensors_list():
+def dict_of_sensors_list(data):
     temps = []
     humids = []
+    timestamps = []
     for i in data:
         temps.append(i["data"]["temperature"]["value"])
         humids.append(i["data"]["humidity"]["value"])
-    dicts = {"temps": temps, "humids": humids}
+        timestamps.append(i["timestamp"])
+    dicts = {"temps": temps, "humids": humids, "timestamps": timestamps}
     return dicts
 
 
