@@ -18,7 +18,7 @@ python3 app.py
 ### Authors
 
 * **<a href="https://sadipgiri.github.io">Sadip Giri</a>** - (sadipgiri@bennington.edu)
-* **<a href="">Nidesh Chitrakar</a>** - (sadipgiri@bennington.edu)
+* **<a href="">Nidesh Chitrakar</a>** - (nideshchitrakar@bennington.edu)
 
 ### Contact
 
