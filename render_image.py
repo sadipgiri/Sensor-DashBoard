@@ -23,12 +23,13 @@ def render_img(data):
     plt.ylabel("Humidity in %")
     plt.savefig('{0}pic.png'.format('./static/'))
 
-def render_in_plotly(data):
+def render_in_plotly(data, id):
     trace1 = go.Scatter(x=data["timestamps"], y=data["temps"])
     trace2 = go.Scatter(x=data["timestamps"], y=data["humids"])
-    layout = go.Layout(title='Sample Plot', plot_bgcolor='rgb(230,230,230)')
+    layout = go.Layout(title='{0} Plot'.format(id), plot_bgcolor='rgb(230,230,230)')
     fig = go.Figure(data=[trace1, trace2], layout=layout)
-    offline.plot(fig, filename='{0}simple.html'.format('./static/'))
+    offline.plot(fig, filename='{0}simple.html'.format('./static/'), auto_open=False)
+    return
 
 if __name__ == '__main__':
     # print(last_hour_sensor_data())

@@ -7,20 +7,20 @@
 """
 
 from flask import Flask, render_template, request
-from sensor_api import dict_of_sensors_list, last_hour_sensor_data
+from sensor_api import dict_of_sensors_list, last_hour_sensor_data, particular_sensor_data 
 import time
-from render_image import render_img
+from render_image import render_img, render_in_plotly
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    data_to_plot = dict_of_sensors_list(last_hour_sensor_data())
-    render_img(data_to_plot)
-    # time.sleep(0.75)
+    # data_to_plot = dict_of_sensors_list(last_hour_sensor_data())
+    # # render_img(data_to_plot)
+    # # time.sleep(0.75)
+    # render_in_plotly(data_to_plot)
     data = last_hour_sensor_data()
     # data = dict_of_sensors_list(data)
-    print(data)
     list_of_sensors = list(range(1, 21))
     return render_template('sensor.html', data=data, list_of_sensors=list_of_sensors)
 
@@ -28,7 +28,10 @@ def index():
 def id():
     select = request.form.get('IDs')
     print(select)
-    # return "Hello World! {0}".format(select)
+    render_in_plotly(dict_of_sensors_list(particular_sensor_data(id=select)), select)
+    # data = last_hour_sensor_data()
+    # list_of_sensors = list(range(1, 21))
+    # return render_template('sensor.html', data=data, list_of_sensors=list_of_sensors)
     return index()
 
 # @app.route('/id')

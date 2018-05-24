@@ -16,6 +16,22 @@ def last_hour_sensor_data():
     except Exception as e:
         return offline_sensor_data() 
 
+def particular_sensor_data(id=1):
+    if id:
+        try:
+            req = requests.request('GET', 'http://34.201.69.120:5000/read/{0}'.format(id))
+            json_data = req.json()
+            return json_data["data"]
+        except Exception as e:
+            return offline_sensor_data()
+    try:
+        req = requests.request('GET', 'http://34.201.69.120:5000/read/1')
+        json_data = req.json()
+        return json_data["data"]
+    except Exception as e:
+        return offline_sensor_data()
+
+
 def offline_sensor_data():
         with open('./offline_data/sensor_readings.json') as json_file:
                 json_data = json.load(json_file)
@@ -35,6 +51,7 @@ def dict_of_sensors_list(data):
 
 
 if __name__ == '__main__':
-    print(dict_of_sensors_list(last_hour_sensor_data()))
+    # print(dict_of_sensors_list(last_hour_sensor_data()))
+    print(particular_sensor_data(id=5))
        
 
