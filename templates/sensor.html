@@ -39,8 +39,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <div class="w3-row-padding" style="margin:0 -16px">
       <div class="w3-full">
         <h5>Temperature and Humidity Plot</h5>
-        <!-- <img src="../static/pic.png" style="width:100%" alt="..."> -->
-        <iframe src="../static/simple.html" width="100%" height="550" frameborder="1"></iframe> 
+        <img src="../static/pic.png" style="width:100%" alt="...">
+        <!-- <iframe src="../static/simple.html" width="100%" height="550" frameborder="1"></iframe>  -->
       </div>
       <div class="w3-full">
         <h5>Heat Maps</h5>
@@ -54,6 +54,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <tr>
       <td>Temperature (Celcius Degree)</td>
       <td>Humidity (%)</td>
+      <td>ID</td>
     </tr>
     {% for i in data %}
         <tr>
@@ -67,6 +68,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
             {% else %}
                 <td style="color: green">{{i["data"]["humidity"]["value"]}}</td>
             {% endif %}
+            <td style="color: black">{{i["id"]}}</td>
         </tr>
     {% endfor %}      
     </table>

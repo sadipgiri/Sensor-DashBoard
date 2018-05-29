@@ -7,7 +7,7 @@
 """
 
 from flask import Flask, render_template, request
-from sensor_api import dict_of_sensors_list, last_hour_sensor_data, particular_sensor_data 
+from sensor_api import dict_of_sensors_list, last_hour_sensor_data, particular_sensor_data, scan_sensors, convert 
 import time
 from render_image import render_img, render_in_plotly, heat_map
 
@@ -15,6 +15,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    data1 = convert()
+    heat_map(data1)
     # data_to_plot = dict_of_sensors_list(last_hour_sensor_data())
     # # render_img(data_to_plot)
     # # time.sleep(0.75)
@@ -22,7 +24,7 @@ def index():
     data = last_hour_sensor_data()
     # data = dict_of_sensors_list(data)
     list_of_sensors = list(range(1, 21))
-    heat_map()  # to render the heat map before rendering the sensor_dashboard
+    # heat_map()  # to render the heat map before rendering the sensor_dashboard
     return render_template('sensor.html', data=data, list_of_sensors=list_of_sensors)
 
 @app.route('/id', methods=['GET', 'POST'])

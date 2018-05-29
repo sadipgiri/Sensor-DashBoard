@@ -12,19 +12,19 @@ import matplotlib.ticker as ticker
 import plotly.offline as offline
 import plotly.graph_objs as go
 
-from sensor_api import dict_of_sensors_list, last_hour_sensor_data
-from sensor_api import dict_of_sensors_list, last_hour_sensor_data
+from sensor_api import dict_of_sensors_list, last_hour_sensor_data, convert
 
-def render_img(data, id):
+def render_img(data):
     temps = data["temps"]
     humids = data["humids"]
     timestamps = data["timestamps"]
     # plt.plot(temps, humids)
-    plt.plot(timestamps, humids)
+    plt.plot(timestamps, temps)
     # plt.xlabel("Temperature in Celcius")
-    plt.title("Its Pi with {0} ID".format(id))
+    # plt.title("Its Pi with {0} ID".format(id))
+    plt.title("last Hour Temperature Data")
     plt.xlabel("Timestamp")
-    plt.ylabel("Humidity in %")
+    plt.ylabel("Temperature in C")
     plt.savefig('{0}pic.png'.format('./static/'))
 
 def render_in_plotly(data, id):
@@ -37,11 +37,16 @@ def render_in_plotly(data, id):
     return
 
 # need to pass that last hour data and it will work!
-def heat_map():
-    raw_data = pd.read_csv('./static/dummy_data.csv')
+def heat_map(data):
+    # raw_data = pd.read_csv('./static/file.csv')
+    raw_data = pd.DataFrame({'x':data['x'], 'y':data['y'], 'temp': data['temp']})
     raw_data["y"] = pd.Categorical(raw_data["y"], raw_data.y.unique())
+    print("y: {0}".format(raw_data["y"]))
+    print("x: {0}".format(raw_data["x"]))
+    print(raw_data)
+    print("  ")
     raw_data.head()
-    temp_matrix = raw_data.pivot("y", "x", "temp")
+    temp_matrix = raw_data.pivot(index="y", columns="x", values="temp")
     fig = plt.figure()
     fig, ax = plt.subplots(1,1, figsize=(12,8))
     heatplot = ax.imshow(temp_matrix, cmap='BuPu')
@@ -65,9 +70,12 @@ def heat_map():
 
 if __name__ == '__main__':
     # print(last_hour_sensor_data())
-    # data = dict_of_sensors_list(last_hour_sensor_data(), 1)
-    # render_img(data)
+    data1 = dict_of_sensors_list(last_hour_sensor_data())
+    render_img(data1)
     # data_to_plot = dict_of_sensors_list(last_hour_sensor_data())
     # render_in_plotly(data_to_plot, 1)
     # remove_html()
-    heat_map()
+    # heat_map()
+    data = convert()
+    heat_map(data)
+
